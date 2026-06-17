@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpendWise — Personal Finance Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ── Top Navigation Bar ── -->
+<header class="topnav">
+  <div class="topnav-logo">
+    <div class="logo-icon">₹</div>
+    <span class="logo-text">SpendWise</span>
+  </div>
+
+  <nav class="topnav-nav">
+    <a href="#" class="nav-tab active" data-view="dashboard"   onclick="App.navigate('dashboard');return false;">Dashboard</a>
+    <a href="#" class="nav-tab"        data-view="monthly"     onclick="App.navigate('monthly');return false;">Monthly</a>
+    <a href="#" class="nav-tab"        data-view="income"      onclick="App.navigate('income');return false;">Income</a>
+    <a href="#" class="nav-tab"        data-view="investments" onclick="App.navigate('investments');return false;">Investments</a>
+    <a href="#" class="nav-tab"        data-view="history"     onclick="App.navigate('history');return false;">History</a>
+    <a href="#" class="nav-tab"        data-view="settings"    onclick="App.navigate('settings');return false;">⚙ Settings</a>
+  </nav>
+
+  <div class="topnav-actions">
+    <div class="autosave-status" id="autoSaveStatus"></div>
+    <div class="undo-redo-group">
+      <button class="btn-undoredo" id="undoBtn" onclick="App.undo()" title="Undo (Ctrl+Z)" disabled>↩</button>
+      <button class="btn-undoredo" id="redoBtn" onclick="App.redo()" title="Redo (Ctrl+Y)" disabled>↪</button>
+    </div>
+    <button class="btn-theme" id="themeBtn" onclick="App.toggleTheme()" title="Switch to light mode">☀️</button>
+    <button class="btn-hide" id="hideBtn" onclick="App.toggleHideData()" title="Hide/show amounts">🔒 Hide</button>
+    <button class="btn-topnav" onclick="App.exportData()" title="Export data to JSON">⬇ Export</button>
+    <button class="btn-topnav" onclick="App.showImport()" title="Import data from JSON">⬆ Import</button>
+  </div>
+</header>
+
+<!-- ── Month Picker Bar ── -->
+<div class="month-bar" id="monthBar">
+  <div class="month-bar-inner">
+    <button class="year-btn" onclick="App.changePickerYear(-1)">◄</button>
+    <span class="year-display" id="pickerYearDisplay">2025</span>
+    <button class="year-btn" onclick="App.changePickerYear(1)">►</button>
+    <div class="month-pills" id="monthPills"></div>
+  </div>
+</div>
+
+<!-- ── Main Content ── -->
+<main class="main">
+  <div id="view-dashboard"   class="view active"></div>
+  <div id="view-monthly"     class="view"></div>
+  <div id="view-income"      class="view"></div>
+  <div id="view-investments" class="view"></div>
+  <div id="view-history"     class="view"></div>
+  <div id="view-settings"    class="view"></div>
+</main>
+
+<!-- ── Toast ── -->
+<div class="toast" id="toast"></div>
+
+<!-- ── Import Modal ── -->
+<div class="modal-overlay" id="importModal" style="display:none">
+  <div class="modal">
+    <h3>Import Data</h3>
+    <p>Paste the contents of your exported <code>spendwise-backup-*.json</code> file and click Import.</p>
+    <textarea id="importData" placeholder='{"expenses":{...},"income":{...},"categories":[]}'></textarea>
+    <div class="modal-actions">
+      <button onclick="App.importData()">Import</button>
+      <button onclick="App.closeImport()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/history.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
