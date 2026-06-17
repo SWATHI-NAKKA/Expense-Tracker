@@ -237,6 +237,16 @@ const App = {
       if (changed2) { Storage.saveCategories(cats2); Storage._set(Storage.KEYS.expenses, allExp2); }
       Storage.saveSetting('migration_v2', true);
     }
+
+    // ── v3: ensure "Other" bank card exists for all users ────────────────────
+    if (!Storage.getSetting('migration_v3', false)) {
+      const banks3 = Storage.getBankNames();
+      if (banks3.length > 0 && !banks3.find(b => b.id === 'bank_other')) {
+        banks3.push({ id: 'bank_other', label: 'Other', emoji: '🏧' });
+        Storage.saveBankNames(banks3);
+      }
+      Storage.saveSetting('migration_v3', true);
+    }
   },
 
   init() {
@@ -2597,7 +2607,7 @@ const App = {
               <span class="inv-section-icon">🏦</span>
               <div>
                 <div class="inv-section-title">Bank & Cash Balances</div>
-                <div class="inv-section-sub">${monthLabel(ym)} · drag cards to reorder</div>
+                <div class="inv-section-sub">Balances for ${monthLabel(ym)} · Bank cards shared across all months · drag to reorder</div>
               </div>
             </div>
             <div class="inv-autosave-badge" id="bankAutoSaveBadge" style="display:none">✓ Saved</div>

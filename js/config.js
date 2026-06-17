@@ -37,7 +37,8 @@ const DEFAULT_BANKS = [
   { id: 'bank_primary',  label: 'Primary Bank',    emoji: '🏦' },
   { id: 'bank_savings',  label: 'Savings Bank',    emoji: '🐷' },
   { id: 'bank_cash',     label: 'Cash',            emoji: '💵' },
-  { id: 'bank_trading',  label: 'Trading Account', emoji: '📊' }
+  { id: 'bank_trading',  label: 'Trading Account', emoji: '📊' },
+  { id: 'bank_other',    label: 'Other',           emoji: '🏧' }
 ];
 
 // ─── Decorative emoji watermarks for default categories ───────────────────────
@@ -74,7 +75,7 @@ const WORLDWIDE_BANKS = [
   { name: 'Canara Bank',                emoji: '🏦', country: 'IN', domain: 'canarabank.com'      },
   { name: 'IndusInd Bank',              emoji: '🏦', country: 'IN', domain: 'indusind.com'        },
   { name: 'Yes Bank',                   emoji: '🏦', country: 'IN', domain: 'yesbank.in'          },
-  { name: 'Federal Bank',               emoji: '🏦', country: 'IN', domain: 'federalbank.co.in'   },
+  { name: 'Federal Bank',               emoji: '🏦', country: 'IN', domain: 'federalbank.co.in',  logoUrl: 'https://www.federal.bank.in/o/federal-bank-theme/images/logo.svg' },
   { name: 'IDFC FIRST Bank',            emoji: '🏦', country: 'IN', domain: 'idfcfirstbank.com'   },
   { name: 'Union Bank of India',        emoji: '🏦', country: 'IN', domain: 'unionbankofindia.co.in' },
   { name: 'Bank of India',              emoji: '🏦', country: 'IN', domain: 'bankofindia.co.in'   },
